@@ -1,14 +1,14 @@
-package hello.services.impl;
+package com.mtbackend.services.impl;
 
 
-import hello.dao.CountryRepository;
+import com.mtbackend.entities.Country;
+import com.mtbackend.services.CountryService;
+import com.mtbackend.dao.CountryRepository;
 
-import hello.entities.Country;
-import hello.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public class CountryServiceImpl implements CountryService {
 
     @Autowired

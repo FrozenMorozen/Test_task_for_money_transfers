@@ -1,6 +1,7 @@
-package hello.dao;
+package com.mtbackend.dao;
 
-import hello.entities.Country;
+import com.mtbackend.entities.Country;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

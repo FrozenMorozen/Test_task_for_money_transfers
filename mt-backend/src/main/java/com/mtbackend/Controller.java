@@ -1,9 +1,11 @@
-package hello;
+package com.mtbackend;
 
-import hello.entities.City;
-import hello.entities.Country;
-import hello.services.impl.CityServiceImpl;
-import hello.services.impl.CountryServiceImpl;
+import com.mtbackend.entities.City;
+import com.mtbackend.entities.Country;
+import com.mtbackend.services.CityService;
+import com.mtbackend.services.CountryService;
+import com.mtbackend.services.impl.CityServiceImpl;
+import com.mtbackend.services.impl.CountryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,11 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    @Autowired
-    private CityServiceImpl cityService;
+    CountryServiceImpl countryService;
 
-    @Autowired
-    private CountryServiceImpl countryService;
+    private CityServiceImpl cityService;
 
     @GetMapping("/cities")
     public Iterable<City> getCitiesByName(@RequestParam(value="name", required=false, defaultValue="") String name){

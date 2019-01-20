@@ -1,4 +1,4 @@
-package hello.entities;
+package com.mtbackend.entities;
 
 
 import javax.persistence.*;
@@ -10,7 +10,7 @@ public class Country {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column
     private String name;

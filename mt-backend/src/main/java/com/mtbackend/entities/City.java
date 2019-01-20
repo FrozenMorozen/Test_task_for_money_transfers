@@ -1,4 +1,4 @@
-package hello.entities;
+package com.mtbackend.entities;
 
 import javax.persistence.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class City {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column
     private String name;
@@ -33,5 +33,13 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

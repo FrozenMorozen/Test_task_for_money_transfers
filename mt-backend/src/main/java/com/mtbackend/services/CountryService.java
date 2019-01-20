@@ -1,8 +1,10 @@
-package hello.services;
+package com.mtbackend.services;
 
 
-import hello.entities.Country;
+import com.mtbackend.entities.Country;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface CountryService {
 
     Iterable<Country> findCountryByFilter(String nameFilter);
