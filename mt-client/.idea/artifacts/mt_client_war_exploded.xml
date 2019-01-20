@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="mt-client:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/mt_client_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="mt-client/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="mt-client" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$USER_HOME$/Загрузки/gwt-2.7.0/gwt-servlet.jar" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="mt-client/gwt/GWT" />
+    </root>
+  </artifact>
+</component>

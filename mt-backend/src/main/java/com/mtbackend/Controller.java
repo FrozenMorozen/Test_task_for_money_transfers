@@ -7,9 +7,7 @@ import com.mtbackend.services.CountryService;
 import com.mtbackend.services.impl.CityServiceImpl;
 import com.mtbackend.services.impl.CountryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -18,6 +16,11 @@ public class Controller {
     CountryServiceImpl countryService;
 
     private CityServiceImpl cityService;
+
+    @GetMapping("/home")
+    public String home(){
+        return "home";
+    }
 
     @GetMapping("/cities")
     public Iterable<City> getCitiesByName(@RequestParam(value="name", required=false, defaultValue="") String name){
@@ -29,7 +32,7 @@ public class Controller {
         return countryService.findCountryByFilter(name);
     }
 
-    @GetMapping("/testgenerate")
+    @PostMapping("/testgenerate")
     public void setRepository(){
 
         cityService.add(new City("New York"));
@@ -43,8 +46,10 @@ public class Controller {
         countryService.add(new Country("UAE"));
     }
 
+    /*
     @GetMapping("/testdelete")
     public void setRepository(@RequestParam(value="name", required=false, defaultValue="") String name){
         countryService.deleteByName(name);
     }
+    */
 }

@@ -15,7 +15,7 @@ public class Country {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     private List<City> cities;
 
     public Country() {}

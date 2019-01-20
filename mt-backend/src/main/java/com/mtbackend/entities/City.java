@@ -11,9 +11,7 @@ public class City {
     @Column
     private String name;
 
-    // не создался foreign key
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country")
+    @ManyToOne
     private Country country;
 
     public City() {}
