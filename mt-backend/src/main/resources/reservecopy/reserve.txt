@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.hbm2ddl.auto: update
+  datasource:
+    url:
+      jdbc:oracle:thin:@erp-sb.ftc.ru:1526:copy
+    username:
+      }{
+    password:
+      }{
+    driver-class-oracle:
+      jdbc:
+        driver:
+          OracleDriver
+server:
+  port: 8083

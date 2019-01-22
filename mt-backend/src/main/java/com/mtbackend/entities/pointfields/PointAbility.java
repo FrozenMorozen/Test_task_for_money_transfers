@@ -1,4 +1,4 @@
-package hello.entities.pointfields;
+package com.mtbackend.entities.pointfields;
 
 
 public enum PointAbility {

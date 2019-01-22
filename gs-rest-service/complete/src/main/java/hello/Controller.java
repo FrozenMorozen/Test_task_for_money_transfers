@@ -43,26 +43,33 @@ public class Controller {
     }
 
     @GetMapping("/testgenerate")
-    public void setRepository(){
+    public void generateTestData(){
 
-//        cityService.add(new City("New York"));
-//        cityService.add(new City("New Angeles"));
+        Country country = new Country("Russia");
+        City city = new City("Moscow",country);
 
-/*        countryService.add(new Country("Russia"));
-        City moscow = new City("Moscow",countryService.getCountryByName("Russia"));
-        cityService.add(new City("Moscow",countryService.getCountryByName("Russia")));*/
+        countryService.add(country);
+        cityService.add(city);
+        pointService.add(new Point("Euroset", PointType.STORE, PointAbility.SENDING_AND_RECEIVING, "St. Pervomajskaja, 104/1", city));
 
-        Country russia = new Country("Russia");
-        countryService.add(russia);
+        city = new City("Novosibirsk",country);
 
-        City moscow = new City("Moscow",russia);
-        cityService.add(moscow);
+        cityService.add(city);
+        pointService.add(new Point("BANK Levoberezhnyy", PointType.BANK, PointAbility.SENDING_AND_RECEIVING, "St. Majakovskogo, 5", city));
 
-        pointService.add(new Point("Euroset", PointType.STORE, PointAbility.SENDING_AND_RECEIVING, "St. Pervomajskaja, 104/1",moscow));
+        country = new Country("Belarus");
+        city = new City("Minsk",country);
 
-        countryService.add(new Country("Belorussia"));
-        countryService.add(new Country("USA"));
-        countryService.add(new Country("UAE"));
+        countryService.add(country);
+        cityService.add(city);
+        pointService.add(new Point("VTB BANK (BELARUS)", PointType.BANK, PointAbility.SENDING, "Selitskogo ulitsa 65 ", city));
+
+        country = new Country("USA");
+        city = new City("New-York",country);
+
+        countryService.add(country);
+        cityService.add(city);
+        pointService.add(new Point("MONEYGRAM OF NEW YORK - #20 - CHTOWN ", PointType.STORE, PointAbility.SENDING_AND_RECEIVING, "79 DIVISION ST", city));
     }
 /*
     @GetMapping("/testdelete")

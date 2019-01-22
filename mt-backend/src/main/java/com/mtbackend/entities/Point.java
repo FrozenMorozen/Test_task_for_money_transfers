@@ -1,8 +1,7 @@
-package hello.entities;
+package com.mtbackend.entities;
 
-import hello.entities.pointfields.PointAbility;
-import hello.entities.pointfields.PointType;
-
+import com.mtbackend.entities.pointfields.PointAbility;
+import com.mtbackend.entities.pointfields.PointType;
 import javax.persistence.*;
 
 @Entity
@@ -26,8 +25,7 @@ public class Point {
     @Column
     private String address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city")
+    @ManyToOne
     private City city;
 
     public Point() {

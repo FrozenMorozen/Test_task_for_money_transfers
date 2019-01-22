@@ -1,23 +1,20 @@
-package com.mtclient.client;
+package client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.dom.client.*;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import javafx.application.Application;
-import javafx.stage.Stage;
+import com.google.gwt.user.client.ui.*;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
  */
-public class mtclient extends Application implements EntryPoint {
+public class mtclient implements EntryPoint {
 
     /**
      * This is the entry point method.
@@ -168,10 +165,6 @@ public class mtclient extends Application implements EntryPoint {
 
     private void suggectBoxChangeHadler() {
 
-    }
-
-    public void start(Stage primaryStage) throws Exception {
-        onModuleLoad();
     }
 
     private static class MyAsyncCallback implements AsyncCallback<String> {

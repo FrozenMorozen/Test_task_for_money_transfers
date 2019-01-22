@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class City {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @Column
     private String name;

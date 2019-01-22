@@ -1,8 +1,9 @@
 package com.mtbackend.entities;
 
-
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 @Entity
@@ -10,13 +11,10 @@ public class Country {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @Column
     private String name;
-
-    @OneToMany
-    private List<City> cities;
 
     public Country() {}
 
@@ -31,4 +29,5 @@ public class Country {
     public void setName(String name) {
         this.name = name;
     }
+
 }

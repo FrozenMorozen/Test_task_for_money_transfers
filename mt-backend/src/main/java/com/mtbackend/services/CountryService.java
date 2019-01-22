@@ -4,7 +4,7 @@ package com.mtbackend.services;
 import com.mtbackend.entities.Country;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface CountryService {
 
     Iterable<Country> findCountryByFilter(String nameFilter);
