@@ -22,38 +22,24 @@ public class mtclient implements EntryPoint {
     private final MultiWordSuggestOracle suggestOracle=new MultiWordSuggestOracle();
     private final SuggestBox suggestBox = new SuggestBox(suggestOracle);
 
-    final Tree pointsTree = new Tree();
+    private final ListBox listBox = new ListBox(true);
+
     /**
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        final Button button = new Button("Click me");
+        listBox.setVisible(false);
+        final Button button = new Button("Список пунктов");
         final Label label = new Label();
-        final Label label2 = new Label();
 
-/*
-        final MultiWordSuggestOracle suggestOracle = new MultiWordSuggestOracle();
-        suggestOracle.add("A");
-        suggestOracle.add("AB");
-        suggestOracle.add("ABC");
-        suggestOracle.add("ABCD");
-        suggestOracle.add("B");
-        suggestOracle.add("BC");
-        suggestOracle.add("BCD");
-        suggestOracle.add("BCDE");
-        suggestOracle.add("C");
-        suggestOracle.add("CD");
-        suggestOracle.add("CDE");
-        suggestOracle.add("CDEF");
-        suggestOracle.add("D");
-        suggestOracle.add("DE");
-        suggestOracle.add("DEF");
-        suggestOracle.add("DEFG");
-
-        final SuggestBox suggestBox = new SuggestBox(suggestOracle);
-*/
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+                try {
+                    mtclientService.App.getInstance().getPointsForCountryOrCity(suggestBox.getText(), new AsyncCallbackForListBox(listBox));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 if (label.getText().equals("")) {
                     try {
                         mtclientService.App.getInstance().getMessage("Hello, World!", new MyAsyncCallback(label));
@@ -77,26 +63,17 @@ public class mtclient implements EntryPoint {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                } else {
-
-                    label.setText("s");
+                } else if (suggestBox.getText().length() == 0){
+                    suggestOracle.clear();
                 }
                 suggestBox.showSuggestionList();
             }
         });
 
-
-        //suggestBox.refreshSuggestionList();
-
-        // Assume that the host HTML has elements defined whose
-        // IDs are "slot1", "slot2".  In a real app, you probably would not want
-        // to hard-code IDs.  Instead, you could, for example, search for all
-        // elements with a particular CSS class and replace them with widgets.
-        //
-        RootPanel.get("slot1").add(suggestBox);
-        RootPanel.get("slot2").add(button);
+        RootPanel.get("suggestBox").add(suggestBox);
+        RootPanel.get("button").add(button);
+        RootPanel.get("listBox").add(listBox);
         RootPanel.get().add(label);
-        RootPanel.get().add(label2);
     }
 
     private void suggectBoxChangeHadler() {
@@ -121,14 +98,13 @@ public class mtclient implements EntryPoint {
     }
 
     private static class AsyncCallbackForSuggestions implements AsyncCallback<String[]>{
-        private MultiWordSuggestOracle oracle=new MultiWordSuggestOracle();
-        private SuggestBox suggestData=new SuggestBox(oracle);
+        private MultiWordSuggestOracle oracle;
+        private SuggestBox suggestData;
 
         public AsyncCallbackForSuggestions(MultiWordSuggestOracle oracle, SuggestBox suggestData){
-            this.oracle=oracle;
-            this.suggestData=suggestData;
+            this.oracle = oracle;
+            this.suggestData = suggestData;
         }
-
 
         public void onFailure(Throwable caught) {
 
@@ -141,9 +117,31 @@ public class mtclient implements EntryPoint {
             for (String str : suggestionList) {
                 oracle.add(str);
             }
-            oracle.setDefaultSuggestionsFromText(suggestionList);
-            //oracle.setSuggestAllMatchingWords(true);
+            //oracle.setDefaultSuggestionsFromText(suggestionList);
             suggestData.refreshSuggestionList();
+        }
+
+    }
+
+    private static class AsyncCallbackForListBox implements AsyncCallback<String[]>{
+        private ListBox listBox;
+
+        public AsyncCallbackForListBox(ListBox listBox){
+            this.listBox = listBox;
+        }
+
+        public void onFailure(Throwable caught) {
+
+        }
+
+        public void onSuccess(String[] result) {
+            if (result.length != 0) {
+                for (String pointInfo: result) {
+                    listBox.addItem(pointInfo);
+                }
+                listBox.setVisible(true);
+            }
+
         }
 
     }

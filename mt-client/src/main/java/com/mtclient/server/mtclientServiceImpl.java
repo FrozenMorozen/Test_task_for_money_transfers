@@ -45,7 +45,7 @@ public class mtclientServiceImpl extends RemoteServiceServlet implements mtclien
         }
 
         // Поиск городов по фильтру
-        json = readUrl("http://192.168.0.126:8083/cities?name="+filter);
+        json = readUrl("http://192.168.0.126:8083/cities?name=" + filter);
         City[] cities= new Gson().fromJson(json, City[].class);
         for (City city : cities) {
             suggestList.add(city.name);
@@ -53,8 +53,7 @@ public class mtclientServiceImpl extends RemoteServiceServlet implements mtclien
 
         // Если нет подходящих стран/городов, то выполнить поиск по названиям пунктов ДП
         if (suggestList.size() == 0) {
-
-            json = readUrl("http://192.168.0.126:8083/points?name="+filter);
+            json = readUrl("http://192.168.0.126:8083/points?name=" + filter);
             Point[] points= new Gson().fromJson(json, Point[].class);
             for (Point point : points) {
                 suggestList.add(point.name);
@@ -62,6 +61,23 @@ public class mtclientServiceImpl extends RemoteServiceServlet implements mtclien
         }
 
         return suggestList.toArray(new String[0]);
+    }
+
+    public String[] getPointsForCountryOrCity(String countryOrCityName) throws Exception {
+
+        List<String> pointsList = new ArrayList<String>();
+
+        String json = readUrl("http://192.168.0.126:8083/pointsfilter?name="+countryOrCityName);
+        Point[] points= new Gson().fromJson(json, Point[].class);
+        for (Point point : points) {
+            pointsList.add(point.city.country.name + ", "
+                            + point.city.name + ", "
+                            + point.pointType + ", "
+                            + point.name + ", "
+                            + point.address + ", "
+                            + point.pointAbility);
+        }
+        return pointsList.toArray(new String[0]);
     }
 
     private static String readUrl(String urlString) throws Exception {

@@ -14,6 +14,7 @@ public interface mtclientService extends RemoteService {
 
     String[] getSuggestListByFilter(String filter) throws Exception;
 
+    String[] getPointsForCountryOrCity(String countryOrCityName) throws Exception;
     /**
      * Utility/Convenience class.
      * Use mtclientService.App.getInstance() to access static instance of mtclientServiceAsync
