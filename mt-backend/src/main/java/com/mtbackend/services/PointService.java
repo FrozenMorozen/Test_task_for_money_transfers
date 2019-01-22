@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PointService {
 
-    Iterable<Point> findByNameContainingIgnoreCase(String name);
+    Iterable<Point> findPointByFilter(String name);
 
     void add(Point point);
 
