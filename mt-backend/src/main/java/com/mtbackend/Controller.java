@@ -38,7 +38,7 @@ public class Controller {
 
     @GetMapping("/points")
     public Iterable<Point> getPointByName(@RequestParam(value="name", required=false, defaultValue="") String name){
-        return pointService.findByNameContainingIgnoreCase(name);
+        return pointService.findPointByFilter(name);
     }
 
     @GetMapping("/pointscityname")
@@ -56,12 +56,12 @@ public class Controller {
         }
     }
 
-    @GetMapping("/pointsfiltersmart")
+    @GetMapping("/pointsfilter")
     public Iterable<Point> getPointByFilter(@RequestParam(value="name", required=false, defaultValue="") String filter){
 
         // Фильтр не задан - вернуть все пункты
         if (filter.equals("")) {
-            return (List<Point>) pointService.findAll();
+            return pointService.findAll();
 
         } else {
             Set<Point> resultPoints = new HashSet<>();

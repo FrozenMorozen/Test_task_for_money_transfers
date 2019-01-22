@@ -17,7 +17,7 @@ public class PointServiceImpl implements PointService{
     PointRepository pointRepository;
 
     @Override
-    public Iterable<Point> findByNameContainingIgnoreCase(String name) {
+    public Iterable<Point> findPointByFilter(String name) {
         return pointRepository.findByNameContainingIgnoreCase(name);
     }
 
