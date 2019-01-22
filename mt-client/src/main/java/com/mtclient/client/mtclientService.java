@@ -12,7 +12,7 @@ public interface mtclientService extends RemoteService {
     // Sample interface method of remote interface
     String getMessage(String msg) throws Exception;
 
-    List<String> getSuggestListByFilter(String filter);
+    String[] getSuggestListByFilter(String filter) throws Exception;
 
     /**
      * Utility/Convenience class.
