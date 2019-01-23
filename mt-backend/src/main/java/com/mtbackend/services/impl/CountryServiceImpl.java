@@ -32,11 +32,8 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country getCountryByName(String name) {
-        for (Country country: countryRepository.findByName(name)) {
-            return country;
-        }
-        return null;
+    public Iterable<Country> getCountryByName(String name) {
+        return countryRepository.findByName(name);
     }
 
     @Override

@@ -13,5 +13,4 @@ public interface PointRepository extends CrudRepository<Point, Long> {
 
     public Iterable<Point> findByCity(City city);
 
-    //public Iterable<Point> findAll();
 }

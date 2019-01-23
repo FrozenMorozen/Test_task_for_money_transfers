@@ -57,31 +57,24 @@ public class Controller {
         }
     }
 
-    @GetMapping("/pointsfilter")
-    public Iterable<Point> getPointByFilter(@RequestParam(value="name", required=false, defaultValue="") String filter){
+    @GetMapping("/pointsForCountryOrCity")
+    public Iterable<Point> getPointByFilter(@RequestParam(value="name", required=true) String filter){
 
-        // Фильтр не задан - вернуть все пункты
-        if (filter.equals("")) {
-            return pointService.findAll();
 
-        } else {
             Set<Point> resultPoints = new HashSet<>();
 
             // Отфильтровать пункты по городам
-            for (City city: cityService.findCityByFilter(filter)) {
+            for (City city: cityService.findByName(filter)) {
                 resultPoints.addAll((Collection<? extends Point>) pointService.findByCity(city));
             }
 
             // Добавить пункты с фильтром по стране
-            for (Country country: countryService.findCountryByFilter(filter)) {
-                for (Point point: pointService.findAll()) {
-                    if (point.getCity().getCountry().equals(country)) {
-                        resultPoints.add(point);
-                    }
+            for (Country country: countryService.getCountryByName(filter)) {
+                for (City city: cityService.findCitiesByCountry(country)) {
+                    resultPoints.addAll((Collection<? extends Point>) pointService.findByCity(city));
                 }
             }
             return resultPoints;
-        }
     }
 
 }

@@ -60,5 +60,12 @@ public class Application {
         countryService.add(country);
         cityService.add(city);
         pointService.add(new Point("MONEYGRAM OF NEW YORK - #20 - CHTOWN", PointType.STORE, PointAbility.SENDING_AND_RECEIVING, "79 DIVISION ST", city));
+
+        country = new Country("Belgium");
+        city = new City("Brussel",country);
+
+        countryService.add(country);
+        cityService.add(city);
+        pointService.add(new Point("AM BANK", PointType.BANK, PointAbility.SENDING_AND_RECEIVING, "79 DIVISION ST", city));
     }
 }
