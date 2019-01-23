@@ -17,22 +17,9 @@ import java.util.List;
 
 public class mtclientServiceImpl extends RemoteServiceServlet implements mtclientService {
 
-    // Implementation of sample interface method
-    public String getMessage(String msg) throws Exception {
-/*
-        String json = readUrl("http://192.168.0.126:8083/countries");
-
-        Gson gson = new Gson();
-        Page page = gson.fromJson(json, Page.class);
-
-        for (Country country : page.countries){
-            return "    " + country.name;
-        }
-        return null;
-*/
-        return "Client said: \"" + msg + "\"<br>Server answered: \"Hi!\"";
-    }
-
+    /**
+     *  Получить отфильтрованные названия стран и городов
+     */
     public String[] getSuggestListByFilter(String filter) throws Exception {
 
         List<String> suggestList = new ArrayList<String>();
@@ -51,24 +38,19 @@ public class mtclientServiceImpl extends RemoteServiceServlet implements mtclien
             suggestList.add(city.name);
         }
 
-        // Если нет подходящих стран/городов, то выполнить поиск по названиям пунктов ДП
-        if (suggestList.size() == 0) {
-            json = readUrl("http://192.168.0.126:8083/points?name=" + filter);
-            Point[] points= new Gson().fromJson(json, Point[].class);
-            for (Point point : points) {
-                suggestList.add(point.name);
-            }
-        }
-
         return suggestList.toArray(new String[0]);
     }
 
+    /**
+     *  Получить отфильтрованный список пунктов денежных переводов
+     */
     public String[] getPointsForCountryOrCity(String countryOrCityName) throws Exception {
 
         List<String> pointsList = new ArrayList<String>();
 
-        String json = readUrl("http://192.168.0.126:8083/pointsfilter?name="+countryOrCityName);
+        String json = readUrl("http://192.168.0.126:8083/pointsForCountryOrCity?name="+countryOrCityName);
         Point[] points= new Gson().fromJson(json, Point[].class);
+        Arrays.sort(points);
         for (Point point : points) {
             pointsList.add(point.city.country.name + ", "
                             + point.city.name + ", "

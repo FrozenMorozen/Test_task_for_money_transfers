@@ -9,8 +9,6 @@ import java.util.List;
 
 @RemoteServiceRelativePath("mtclientService")
 public interface mtclientService extends RemoteService {
-    // Sample interface method of remote interface
-    String getMessage(String msg) throws Exception;
 
     String[] getSuggestListByFilter(String filter) throws Exception;
 
