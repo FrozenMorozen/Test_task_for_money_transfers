@@ -15,4 +15,6 @@ public interface PointService {
     Iterable<Point> findByCity(City city);
 
     Iterable<Point> findAll();
+
+    void clear();
 }

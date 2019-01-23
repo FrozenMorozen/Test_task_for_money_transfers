@@ -9,4 +9,6 @@ public interface CityService {
     Iterable<City> findCityByFilter(String nameFilter);
 
     void add(City city);
+
+    void clear();
 }
