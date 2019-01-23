@@ -4,6 +4,10 @@ import com.mtbackend.entities.pointfields.PointAbility;
 import com.mtbackend.entities.pointfields.PointType;
 import javax.persistence.*;
 
+
+/**
+ *  Пункт денежных переводов
+ */
 @Entity
 public class Point {
 

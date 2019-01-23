@@ -8,5 +8,7 @@ import java.util.List;
 public interface mtclientServiceAsync {
     void getMessage(String msg, AsyncCallback<String> async) throws Exception;
 
-    void getSuggestListByFilter(String filter, AsyncCallback<List<String>> async);
+    void getSuggestListByFilter(String filter, AsyncCallback<String[]> async) throws Exception;
+
+    void getPointsForCountryOrCity(String countryOrCityName, AsyncCallback<String[]> async);
 }

@@ -2,6 +2,9 @@ package com.mtbackend.entities;
 
 import javax.persistence.*;
 
+/**
+ *  Город
+ */
 @Entity
 public class City {
     @Id

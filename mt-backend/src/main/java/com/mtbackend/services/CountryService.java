@@ -14,4 +14,6 @@ public interface CountryService {
     void  deleteByName(String name);
 
     Country getCountryByName(String name);
+
+    void clear();
 }

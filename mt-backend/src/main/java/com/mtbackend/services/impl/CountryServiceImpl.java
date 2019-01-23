@@ -39,4 +39,9 @@ public class CountryServiceImpl implements CountryService {
         return null;
     }
 
+    @Override
+    public void clear() {
+        countryRepository.deleteAll();
+    }
+
 }

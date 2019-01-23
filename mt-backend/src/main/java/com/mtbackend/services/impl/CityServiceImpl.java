@@ -21,4 +21,9 @@ public class CityServiceImpl implements CityService {
     public void add(City city) {
         cityRepository.save(city);
     }
+
+    @Override
+    public void clear() {
+        cityRepository.deleteAll();
+    }
 }

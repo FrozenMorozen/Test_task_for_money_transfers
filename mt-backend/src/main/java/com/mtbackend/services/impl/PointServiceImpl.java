@@ -35,4 +35,11 @@ public class PointServiceImpl implements PointService{
     public Iterable<Point> findAll() {
         return  pointRepository.findAll();
     }
+
+    @Override
+    public void clear() {
+        pointRepository.deleteAll();
+    }
+
+
 }
