@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>com.mtclient.mtclient mtclientService</servlet-name>
+        <servlet-name>mtclientService</servlet-name>
         <servlet-class>com.mtclient.server.mtclientServiceImpl</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>com.mtclient.mtclient mtclientService</servlet-name>
-        <url-pattern>/mtclient/mtclientService</url-pattern>
+        <servlet-name>mtclientService</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>mtclient.html</welcome-file>
