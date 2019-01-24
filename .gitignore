@@ -35,6 +35,13 @@ buildNumber.properties
 # BlueJ files
 *.ctxt
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -50,3 +57,7 @@ buildNumber.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+.idea/dbnavigator.xml
+.idea/modules.xml
+.idea/workspace.xml
+Test_task_for_money_transfers.iml
