@@ -64,3 +64,6 @@ Test_task_for_money_transfers.iml
 .idea/compiler.xml
 .idea/libraries/
 mt-client/mt-client.iml
+/mt-client/.idea/
+/.idea/
+/mt-backend/gradle/wrapper/
