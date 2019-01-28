@@ -61,3 +61,6 @@ hs_err_pid*
 .idea/modules.xml
 .idea/workspace.xml
 Test_task_for_money_transfers.iml
+.idea/compiler.xml
+.idea/libraries/
+mt-client/mt-client.iml
