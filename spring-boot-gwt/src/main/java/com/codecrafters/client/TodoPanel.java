@@ -1,0 +1,212 @@
+package com.codecrafters.client;
+
+import com.codecrafters.client.entities.Point;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.*;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+
+import java.util.List;
+
+/**
+ * This class is used as root panel and contains the whole page.
+ *
+ * @author Fabian Dietenberger
+ */
+class TodoPanel extends Composite {
+
+    interface TestViewUiBinder extends UiBinder<HTMLPanel, TodoPanel> {}
+    private static TestViewUiBinder ourUiBinder = GWT.create(TestViewUiBinder.class);
+
+    private static final TodoItemService todoItemService = GWT.create(TodoItemService.class);
+    private static final PointService pointService = GWT.create(PointService.class);
+
+    @UiField
+    FlowPanel todoItemsList;
+
+    @UiField
+    TextBox todoItemTextBox;
+
+    @UiField
+    Button addTodoItemButton;
+//------------------------------------------------
+    @UiField
+    Button getPointButton;
+
+    @UiField
+    Button addPointButton;
+    //------------------------------------------------
+
+    public TodoPanel() {
+        initWidget(ourUiBinder.createAndBindUi(this));
+        refreshTodoItems();
+
+        addTodoItemButton.addClickHandler(event -> {
+            final String todoItemText = todoItemTextBox.getText();
+            if (!todoItemText.isEmpty()) {
+                addTodoItem(todoItemText);
+            }
+        });
+
+        addPointButton.addClickHandler(event -> {
+            final String todoItemText = todoItemTextBox.getText();
+            if (!todoItemText.isEmpty()) {
+                addPoint(todoItemText);
+            }
+        });
+
+        getPointButton.addClickHandler(event -> {
+            final String todoItemText = todoItemTextBox.getText();
+            if (!todoItemText.isEmpty()) {
+                getPoint(todoItemText);
+            }
+        });
+
+        todoItemTextBox.getElement().setAttribute("placeholder", "Add a todo item");
+        todoItemTextBox.addKeyUpHandler(event -> {
+            if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+                final String todoItemText = todoItemTextBox.getText();
+                if (!todoItemText.isEmpty()) {
+                    addTodoItem(todoItemText);
+                }
+            }
+        });
+    }
+
+    /**
+     * Clear the todoItemsPanel and add all todoItems from the server.
+     */
+    private void refreshTodoItems() {
+        todoItemService.getTodos("", new MethodCallback<List<TodoItem>>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final List<TodoItem> response) {
+                todoItemsList.clear();
+                for (final TodoItem todoItem : response) {
+                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
+                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
+                    todoItemsList.add(todoItemLabel);
+                }
+            }
+        });
+        pointService.getPoints("", new MethodCallback<List<Point>>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final List<Point> response) {
+                todoItemsList.clear();
+                for (final Point point : response) {
+                    final TodoItem todoItem = new TodoItem(point.getName());
+                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
+                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
+                    todoItemsList.add(todoItemLabel);
+                }
+            }
+        });
+    }
+
+    private void getTodoItem(final String text) {
+        todoItemService.getTodos(text, new MethodCallback<List<TodoItem>>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final List<TodoItem> response) {
+                todoItemsList.clear();
+                for (final TodoItem todoItem : response) {
+                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
+                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
+                    todoItemsList.add(todoItemLabel);
+                }
+            }
+        });
+    }
+
+    /**
+     * Send a new todoItem to the server. On success refresh the todoItemsPanel.
+     *
+     * @param text the text of the todoItem
+     */
+    private void addTodoItem(final String text) {
+        todoItemService.addTodo(new TodoItem(text), new MethodCallback<Void>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final Void response) {
+                todoItemTextBox.setText("");
+                refreshTodoItems();
+            }
+        });
+    }
+
+    /**
+     * Remove a todoItem from the server. On success refresh the todoItemsPanel.
+     *
+     * @param todoItem the todoItem to delete
+     */
+    public void removeTodoItem(final TodoItem todoItem) {
+        todoItemService.deleteTodo(todoItem, new MethodCallback<Void>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final Void response) {
+                refreshTodoItems();
+            }
+        });
+    }
+
+    //-----------------------------------------------------------------------------
+    private void addPoint(final String text) {
+        pointService.addPoint(new Point(text), new MethodCallback<Void>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final Void response) {
+                todoItemTextBox.setText("");
+                //refreshTodoItems();
+            }
+        });
+    }
+
+    private void getPoint(final String text) {
+        pointService.getPoints(text, new MethodCallback<List<Point>>() {
+            @Override
+            public void onFailure(final Method method, final Throwable exception) {
+
+            }
+
+            @Override
+            public void onSuccess(final Method method, final List<Point> response) {
+                todoItemsList.clear();
+                for (final Point point : response) {
+                    final TodoItem todoItem = new TodoItem(point.getName());
+                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
+                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
+                    todoItemsList.add(todoItemLabel);
+                }
+            }
+        });
+    }
+
+}

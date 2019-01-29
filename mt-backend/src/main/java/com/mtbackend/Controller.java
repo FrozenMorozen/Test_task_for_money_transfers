@@ -60,7 +60,6 @@ public class Controller {
     @GetMapping("/pointsForCountryOrCity")
     public Iterable<Point> getPointByFilter(@RequestParam(value="name", required=true) String filter){
 
-
             Set<Point> resultPoints = new HashSet<>();
 
             // Отфильтровать пункты по городам
