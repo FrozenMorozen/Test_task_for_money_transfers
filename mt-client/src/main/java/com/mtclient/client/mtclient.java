@@ -19,6 +19,7 @@ public class mtclient implements EntryPoint {
         listBox.setVisible(false);
         final Button pointListButton = new Button("Points list");
 
+
         pointListButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 if (suggestBox.getText().length() >= 1) {
