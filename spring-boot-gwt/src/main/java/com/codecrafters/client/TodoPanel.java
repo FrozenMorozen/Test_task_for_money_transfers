@@ -32,13 +32,6 @@ class TodoPanel extends Composite {
 
     @UiField
     Button addTodoItemButton;
-//------------------------------------------------
-    @UiField
-    Button getPointButton;
-
-    @UiField
-    Button addPointButton;
-    //------------------------------------------------
 
     public TodoPanel() {
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -48,20 +41,6 @@ class TodoPanel extends Composite {
             final String todoItemText = todoItemTextBox.getText();
             if (!todoItemText.isEmpty()) {
                 addTodoItem(todoItemText);
-            }
-        });
-
-        addPointButton.addClickHandler(event -> {
-            final String todoItemText = todoItemTextBox.getText();
-            if (!todoItemText.isEmpty()) {
-                addPoint(todoItemText);
-            }
-        });
-
-        getPointButton.addClickHandler(event -> {
-            final String todoItemText = todoItemTextBox.getText();
-            if (!todoItemText.isEmpty()) {
-                getPoint(todoItemText);
             }
         });
 
