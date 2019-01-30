@@ -11,6 +11,7 @@ import com.codecrafters.server.services.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,7 +43,10 @@ public class PointServiceImpl implements PointService {
                 resultPoints.addAll(pointRepository.findByCity(city));
             }
         }
-        return (List<Point>) resultPoints;
+
+        List<Point> points = new ArrayList<>();
+        points.addAll(resultPoints);
+        return points;
     }
 
     @Override
