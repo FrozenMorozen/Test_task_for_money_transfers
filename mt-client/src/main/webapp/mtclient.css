@@ -6,12 +6,12 @@ h1 {
     text-align: center;
 }
 
-body, td, a, div, .p {
+body, a, div, .p {
     font-family: arial, sans-serif
 }
 
 .gwt-SuggestBox {
-    padding: 5px 4px;
+    padding: 100px 40px;
     border: 1px solid #ccc;
     border-top: 1px solid #999;
     font-size: 100%;

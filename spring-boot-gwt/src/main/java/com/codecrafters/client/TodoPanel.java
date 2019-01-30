@@ -80,7 +80,7 @@ class TodoPanel extends Composite {
      * Clear the todoItemsPanel and add all todoItems from the server.
      */
     private void refreshTodoItems() {
-        todoItemService.getTodos("", new MethodCallback<List<TodoItem>>() {
+        /*todoItemService.getTodos("", new MethodCallback<List<TodoItem>>() {
             @Override
             public void onFailure(final Method method, final Throwable exception) {
 
@@ -95,7 +95,7 @@ class TodoPanel extends Composite {
                     todoItemsList.add(todoItemLabel);
                 }
             }
-        });
+        });*/
         pointService.getPoints("", new MethodCallback<List<Point>>() {
             @Override
             public void onFailure(final Method method, final Throwable exception) {
@@ -106,8 +106,8 @@ class TodoPanel extends Composite {
             public void onSuccess(final Method method, final List<Point> response) {
                 todoItemsList.clear();
                 for (final Point point : response) {
-                    final TodoItem todoItem = new TodoItem(point.getName());
-                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
+                    // final TodoItem todoItem = new TodoItem(point.getName());
+                    final TodoItemLabel todoItemLabel = new TodoItemLabel(new TodoItem(point.getName()));
                     todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
                     todoItemsList.add(todoItemLabel);
                 }

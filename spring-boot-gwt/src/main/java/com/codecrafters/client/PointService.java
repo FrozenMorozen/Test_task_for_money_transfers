@@ -8,6 +8,7 @@ import org.fusesource.restygwt.client.RestService;
 import javax.ws.rs.*;
 import java.util.List;
 
+@Path("points")
 interface PointService extends RestService {
 
     @GET
