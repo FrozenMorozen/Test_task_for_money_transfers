@@ -14,7 +14,8 @@ public class SpringBootGwt implements EntryPoint {
 
     public void onModuleLoad() {
         useCorrectRequestBaseUrl();
-        RootPanel.get().add(new TodoPanel());
+        //RootPanel.get().add(new TodoPanel());
+        RootPanel.get().add(new PointPanel());
     }
 
     private void useCorrectRequestBaseUrl() {

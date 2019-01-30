@@ -22,7 +22,6 @@ class TodoPanel extends Composite {
     private static TestViewUiBinder ourUiBinder = GWT.create(TestViewUiBinder.class);
 
     private static final TodoItemService todoItemService = GWT.create(TodoItemService.class);
-    private static final PointService pointService = GWT.create(PointService.class);
 
     @UiField
     FlowPanel todoItemsList;
@@ -59,43 +58,7 @@ class TodoPanel extends Composite {
      * Clear the todoItemsPanel and add all todoItems from the server.
      */
     private void refreshTodoItems() {
-        /*todoItemService.getTodos("", new MethodCallback<List<TodoItem>>() {
-            @Override
-            public void onFailure(final Method method, final Throwable exception) {
-
-            }
-
-            @Override
-            public void onSuccess(final Method method, final List<TodoItem> response) {
-                todoItemsList.clear();
-                for (final TodoItem todoItem : response) {
-                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
-                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
-                    todoItemsList.add(todoItemLabel);
-                }
-            }
-        });*/
-        pointService.getPoints("", new MethodCallback<List<Point>>() {
-            @Override
-            public void onFailure(final Method method, final Throwable exception) {
-
-            }
-
-            @Override
-            public void onSuccess(final Method method, final List<Point> response) {
-                todoItemsList.clear();
-                for (final Point point : response) {
-                    // final TodoItem todoItem = new TodoItem(point.getName());
-                    final TodoItemLabel todoItemLabel = new TodoItemLabel(new TodoItem(point.getName()));
-                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
-                    todoItemsList.add(todoItemLabel);
-                }
-            }
-        });
-    }
-
-    private void getTodoItem(final String text) {
-        todoItemService.getTodos(text, new MethodCallback<List<TodoItem>>() {
+        todoItemService.getTodos("", new MethodCallback<List<TodoItem>>() {
             @Override
             public void onFailure(final Method method, final Throwable exception) {
 
@@ -112,6 +75,7 @@ class TodoPanel extends Composite {
             }
         });
     }
+
 
     /**
      * Send a new todoItem to the server. On success refresh the todoItemsPanel.
@@ -151,41 +115,4 @@ class TodoPanel extends Composite {
             }
         });
     }
-
-    //-----------------------------------------------------------------------------
-    private void addPoint(final String text) {
-        pointService.addPoint(new Point(text), new MethodCallback<Void>() {
-            @Override
-            public void onFailure(final Method method, final Throwable exception) {
-
-            }
-
-            @Override
-            public void onSuccess(final Method method, final Void response) {
-                todoItemTextBox.setText("");
-                //refreshTodoItems();
-            }
-        });
-    }
-
-    private void getPoint(final String text) {
-        pointService.getPoints(text, new MethodCallback<List<Point>>() {
-            @Override
-            public void onFailure(final Method method, final Throwable exception) {
-
-            }
-
-            @Override
-            public void onSuccess(final Method method, final List<Point> response) {
-                todoItemsList.clear();
-                for (final Point point : response) {
-                    final TodoItem todoItem = new TodoItem(point.getName());
-                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
-                    todoItemLabel.addClickHandler(todoItemToRemove -> removeTodoItem(todoItemToRemove));
-                    todoItemsList.add(todoItemLabel);
-                }
-            }
-        });
-    }
-
 }

@@ -76,8 +76,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
-                "id=" + id +
+        return " > Point{" +
                 ", name='" + name + '\'' +
                 ", pointType=" + pointType +
                 ", pointAbility=" + pointAbility +

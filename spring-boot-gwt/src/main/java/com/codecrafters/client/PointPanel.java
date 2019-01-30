@@ -11,6 +11,7 @@ import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.List;
+import java.util.Set;
 
 public class PointPanel extends Composite {
 
@@ -31,7 +32,6 @@ public class PointPanel extends Composite {
     public PointPanel(){
         initWidget(uiBinder.createAndBindUi(this));
 
-
         getPointsButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -42,7 +42,7 @@ public class PointPanel extends Composite {
             }
         });
 
-
+        filterTextBox.getElement().setAttribute("placeholder", "Search point");
     }
 
     private void getPoints(final String text) {
@@ -57,9 +57,8 @@ public class PointPanel extends Composite {
                 pointsList.clear();
                 // Здесь наверное ещё отсортировать
                 for (final Point point : response) {
-                    final TodoItem todoItem = new TodoItem(point.getName());
-                    final TodoItemLabel todoItemLabel = new TodoItemLabel(todoItem);
-                    pointsList.add(todoItemLabel);
+                    final PointLabel pointLabel= new PointLabel(point);
+                    pointsList.add(pointLabel);
                 }
             }
         });

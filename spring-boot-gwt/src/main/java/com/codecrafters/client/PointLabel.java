@@ -12,11 +12,7 @@ import com.google.gwt.user.client.ui.Label;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class is used to represent a {@link Point} in a panel.
- *
- * @author Fabian Dietenberger
- */
+
 class PointLabel extends Composite {
 
     interface PointLabelUiBinder extends UiBinder<Label, PointLabel> {}
@@ -29,11 +25,11 @@ class PointLabel extends Composite {
     private final List<PointLabelClickHandler> clickHandlers;
 
     @UiField
-    Label label;
+    Label pointlabel;
 
     public PointLabel(final Point point) {
         initWidget(ourUiBinder.createAndBindUi(this));
-        label.setText(point.toString());
+        pointlabel.setText(point.toString());
         clickHandlers = new ArrayList<>();
 
         addDomHandler(event -> {
@@ -41,7 +37,6 @@ class PointLabel extends Composite {
                 clickHandler.onClick(point);
             }
         }, ClickEvent.getType());
-        
     }
 
     public void addClickHandler(final PointLabelClickHandler clickHandler) {

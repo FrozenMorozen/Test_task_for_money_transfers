@@ -12,7 +12,7 @@ public interface PointService {
 
     void add(Point point);
 
-    Iterable<Point> findByCity(City city);
+    List<Point> findByCity(City city);
 
     Iterable<Point> findAll();
 

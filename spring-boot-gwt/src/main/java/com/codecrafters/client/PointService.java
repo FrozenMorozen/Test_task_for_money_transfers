@@ -15,8 +15,6 @@ interface PointService extends RestService {
     @Path("?text={text}")
     void getPoints(@PathParam("text") final String text, MethodCallback<List<Point>> callback);
 
-
     @PUT
     void addPoint(final Point point, final MethodCallback<Void> callback);
-
 }

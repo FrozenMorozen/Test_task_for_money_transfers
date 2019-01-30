@@ -13,6 +13,6 @@ public interface PointRepository extends CrudRepository<Point, Long> {
 
     public List<Point> findByNameContainingIgnoreCase(String name);
 
-    public Iterable<Point> findByCity(City city);
+    public List<Point> findByCity(City city);
 
 }

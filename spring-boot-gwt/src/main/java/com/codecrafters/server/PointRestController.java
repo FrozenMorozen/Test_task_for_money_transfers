@@ -40,6 +40,7 @@ public class PointRestController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Point>> getPointByFilter(@RequestParam(value="text", required=false) String filter){
+
         return ResponseEntity.ok()
                 .cacheControl(CacheControl.noCache())
                 .body(pointService.findPointByFilter(filter));
