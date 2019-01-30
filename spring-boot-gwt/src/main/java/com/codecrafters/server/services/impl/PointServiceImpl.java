@@ -20,33 +20,11 @@ import java.util.Set;
 public class PointServiceImpl implements PointService {
 
     @Autowired
-    PointRepository pointRepository;
-
-    @Autowired
-    CityRepository cityRepository;
-
-    @Autowired
-    CountryRepository countryRepository;
+    private PointRepository pointRepository;
 
     @Override
     public List<Point> findPointByFilter(String name) {
-        Set<Point> resultPoints = new HashSet<>();
-
-        // Отфильтровать пункты по городам
-        for (City city: cityRepository.findByName(name)) {
-            resultPoints.addAll(pointRepository.findByCity(city));
-        }
-
-        // Добавить пункты с фильтром по стране
-        for (Country country: countryRepository.findByName(name)) {
-            for (City city: cityRepository.findByCountry(country)) {
-                resultPoints.addAll(pointRepository.findByCity(city));
-            }
-        }
-
-        List<Point> points = new ArrayList<>();
-        points.addAll(resultPoints);
-        return points;
+        return pointRepository.findByNameContainingIgnoreCase(name);
     }
 
     @Override

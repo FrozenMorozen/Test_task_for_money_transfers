@@ -2,8 +2,7 @@ package com.codecrafters.client;
 
 import com.codecrafters.client.entities.Point;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
@@ -42,7 +41,18 @@ public class PointPanel extends Composite {
             }
         });
 
-        filterTextBox.getElement().setAttribute("placeholder", "Search point");
+        filterTextBox.getElement().setAttribute("placeholder", "Country or city");
+        filterTextBox.addKeyUpHandler(new KeyUpHandler() {
+            @Override
+            public void onKeyUp(KeyUpEvent event) {
+                if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+                    final String filterText = filterTextBox.getText();
+                    if (!filterText.isEmpty()) {
+                        getPoints(filterText);
+                    }
+                }
+            }
+        });
     }
 
     private void getPoints(final String text) {

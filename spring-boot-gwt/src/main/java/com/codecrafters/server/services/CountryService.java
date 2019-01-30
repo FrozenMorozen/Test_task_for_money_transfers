@@ -3,15 +3,13 @@ package com.codecrafters.server.services;
 
 import com.codecrafters.server.entities.Country;
 
+import java.util.List;
+
 public interface CountryService {
 
-    Iterable<Country> findCountryByFilter(String nameFilter);
+    List<Country> findCountryByFilter(String nameFilter);
 
     void add(Country country);
-
-    void  deleteByName(String name);
-
-    Iterable<Country> getCountryByName(String name);
 
     void clear();
 }

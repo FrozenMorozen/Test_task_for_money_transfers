@@ -11,7 +11,7 @@ import javax.persistence.*;
  *  Пункт денежных переводов
  */
 @Entity
-public class Point {
+public class Point implements Comparable{
 
     @Id
     @GeneratedValue
@@ -35,10 +35,6 @@ public class Point {
     private City city;
 
     public Point() {
-    }
-
-    public Point(String name) {
-        this.name = name;
     }
 
     public Point(String name, PointType pointType, PointAbility pointAbility, String address, City city) {
@@ -99,5 +95,23 @@ public class Point {
                 ", address='" + address + '\'' +
                 ", city=" + city +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Point tmp = (Point)o;
+        int countryOrder = city.getCountry().getName().hashCode() - tmp.city.getCountry().getName().hashCode();
+
+        if (countryOrder == 0) {
+            int cityOrder = city.getName().hashCode()-tmp.city.getName().hashCode();
+
+            if (cityOrder == 0) {
+                return pointType.hashCode() - tmp.pointType.hashCode();
+            } else {
+                return cityOrder;
+            }
+        } else {
+            return countryOrder;
+        }
     }
 }

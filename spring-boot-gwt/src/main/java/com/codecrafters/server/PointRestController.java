@@ -41,26 +41,26 @@ public class PointRestController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Point>> getPointByFilter(@RequestParam(value="text", required=false) String filter){
 
-        return ResponseEntity.ok()
-                .cacheControl(CacheControl.noCache())
-                .body(pointService.findPointByFilter(filter));
-
-            /*Set<Point> resultPoints = new HashSet<>();
+            Set<Point> resultPoints = new HashSet<>();
 
             // Отфильтровать пункты по городам
-            for (City city: cityService.findByName(filter)) {
-                resultPoints.addAll((Collection<? extends Point>) pointService.findByCity(city));
+            for (City city: cityService.findCityByFilter(filter)) {
+                resultPoints.addAll(pointService.findByCity(city));
             }
 
             // Добавить пункты с фильтром по стране
-            for (Country country: countryService.getCountryByName(filter)) {
+            for (Country country: countryService.findCountryByFilter(filter)) {
                 for (City city: cityService.findCitiesByCountry(country)) {
-                    resultPoints.addAll((Collection<? extends Point>) pointService.findByCity(city));
+                    resultPoints.addAll(pointService.findByCity(city));
                 }
             }
+
+            List<Point> points = new ArrayList<>(resultPoints);
+            Collections.sort(points);
+
             return ResponseEntity.ok()
                     .cacheControl(CacheControl.noCache())
-                    .body(resultPoints);*/
+                    .body(points);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

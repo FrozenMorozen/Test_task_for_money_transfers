@@ -7,6 +7,8 @@ import com.codecrafters.server.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CityServiceImpl implements CityService {
 
@@ -14,18 +16,13 @@ public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
 
     @Override
-    public Iterable<City> findCityByFilter(String nameFilter){
+    public List<City> findCityByFilter(String nameFilter){
         return cityRepository.findByNameContainingIgnoreCase(nameFilter);
     }
 
     @Override
-    public Iterable<City> findCitiesByCountry(Country country) {
+    public List<City> findCitiesByCountry(Country country) {
         return cityRepository.findByCountry(country);
-    }
-
-    @Override
-    public Iterable<City> findByName(String name) {
-        return cityRepository.findByName(name);
     }
 
     @Override

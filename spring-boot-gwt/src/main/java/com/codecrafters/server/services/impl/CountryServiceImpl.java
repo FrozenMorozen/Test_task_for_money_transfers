@@ -7,6 +7,8 @@ import com.codecrafters.server.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CountryServiceImpl implements CountryService {
 
@@ -14,7 +16,7 @@ public class CountryServiceImpl implements CountryService {
     private CountryRepository countryRepository;
 
     @Override
-    public Iterable<Country> findCountryByFilter(String nameFilter){
+    public List<Country> findCountryByFilter(String nameFilter){
         return countryRepository.findByNameContainingIgnoreCase(nameFilter);
     }
 
@@ -24,20 +26,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public void deleteByName(String name) {
-        for (Country country: countryRepository.findByName(name)) {
-            countryRepository.delete(country);
-        }
-    }
-
-    @Override
-    public Iterable<Country> getCountryByName(String name) {
-        return countryRepository.findByName(name);
-    }
-
-    @Override
     public void clear() {
         countryRepository.deleteAll();
     }
-
 }

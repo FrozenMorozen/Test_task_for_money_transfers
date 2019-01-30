@@ -6,7 +6,6 @@
         }
 
         .point-label:hover {
-            text-decoration: line-through;
             color: #999999;
             cursor: pointer;
         }
