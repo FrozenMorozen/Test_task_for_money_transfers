@@ -1,0 +1,14 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:style>
+        .point-label {
+            width: 100%;
+        }
+
+        .point-label:hover {
+            color: #999999;
+            cursor: pointer;
+        }
+    </ui:style>
+    <g:Label ui:field="pointlabel" addStyleNames="{style.point-label}"/>
+</ui:UiBinder>
