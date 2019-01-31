@@ -2,6 +2,7 @@ package com.mtwebapp.server.entities;
 
 import javax.persistence.*;
 
+
 /**
  *  Город
  */

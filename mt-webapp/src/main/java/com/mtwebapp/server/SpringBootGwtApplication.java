@@ -35,16 +35,6 @@ public class SpringBootGwtApplication {
         generateTestData(countryService, cityService, pointService);
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        final CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-        config.addAllowedMethod("*");
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
-
     public static void generateTestData(CountryServiceImpl countryService, CityServiceImpl cityService, PointServiceImpl pointService){
 
         Country country = new Country("Russia");

@@ -8,8 +8,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-
 import java.util.List;
+
 
 public class PointPanel extends Composite {
 
@@ -33,7 +33,7 @@ public class PointPanel extends Composite {
         getPointsButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                final String filterText = filterTextBox.getText();
+                 String filterText = filterTextBox.getText();
                 if (!filterText.isEmpty()) {
                     getPoints(filterText);
                 }
@@ -45,7 +45,7 @@ public class PointPanel extends Composite {
             @Override
             public void onKeyUp(KeyUpEvent event) {
                 if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-                    final String filterText = filterTextBox.getText();
+                     String filterText = filterTextBox.getText();
                     if (!filterText.isEmpty()) {
                         getPoints(filterText);
                     }
@@ -54,19 +54,18 @@ public class PointPanel extends Composite {
         });
     }
 
-    private void getPoints(final String text) {
+    private void getPoints(String text) {
         pointService.getPoints(text, new MethodCallback<List<Point>>() {
             @Override
-            public void onFailure(final Method method, final Throwable exception) {
+            public void onFailure(Method method, Throwable exception) {
 
             }
 
             @Override
-            public void onSuccess(final Method method, final List<Point> response) {
+            public void onSuccess(Method method, List<Point> response) {
                 pointsList.clear();
-                // Здесь наверное ещё отсортировать
-                for (final Point point : response) {
-                    final PointLabel pointLabel= new PointLabel(point);
+                for ( Point point : response) {
+                     PointLabel pointLabel= new PointLabel(point);
                     pointsList.add(pointLabel);
                 }
             }

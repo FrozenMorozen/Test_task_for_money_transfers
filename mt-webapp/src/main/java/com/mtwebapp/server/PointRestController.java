@@ -57,11 +57,11 @@ public class PointRestController {
 
             List<Point> points = new ArrayList<>(resultPoints);
             Collections.sort(points);
-
             logger.info("Get points: " + points);
+
             return ResponseEntity.ok()
                     .cacheControl(CacheControl.noCache())
-                    .body(points);
+                    .body(new ArrayList<>(resultPoints));
     }
 
     @RequestMapping(method = RequestMethod.PUT)

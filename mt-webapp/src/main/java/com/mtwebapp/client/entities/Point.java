@@ -1,10 +1,7 @@
 package com.mtwebapp.client.entities;
 
-
 import com.mtwebapp.client.entities.pointfields.PointAbility;
 import com.mtwebapp.client.entities.pointfields.PointType;
-
-import javax.persistence.*;
 
 
 /**

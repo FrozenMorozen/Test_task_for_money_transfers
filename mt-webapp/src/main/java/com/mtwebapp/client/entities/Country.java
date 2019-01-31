@@ -1,5 +1,6 @@
 package com.mtwebapp.client.entities;
 
+
 /**
  *  Страна
  */
