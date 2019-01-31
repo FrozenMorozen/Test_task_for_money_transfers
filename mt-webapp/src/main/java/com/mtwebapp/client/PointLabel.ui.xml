@@ -4,6 +4,7 @@
         .point-label {
             background-color: #EEEEEE;
             width: 100%;
+            white-space: nowrap;
         }
 
         .point-label:hover {
