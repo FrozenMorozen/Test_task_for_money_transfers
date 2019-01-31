@@ -2,6 +2,7 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
     <ui:style>
         .point-label {
+            background-color: #EEEEEE;
             width: 100%;
         }
 

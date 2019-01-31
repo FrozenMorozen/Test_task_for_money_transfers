@@ -18,6 +18,6 @@ class PointLabel extends Composite {
 
     public PointLabel( Point point) {
         initWidget(ourUiBinder.createAndBindUi(this));
-        pointlabel.setText(point.toString() + "\n\n");
+        pointlabel.setText(point.toString());
     }
 }
