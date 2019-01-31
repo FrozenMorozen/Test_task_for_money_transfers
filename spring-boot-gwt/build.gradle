@@ -9,8 +9,7 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'eclipse'
-    id 'groovy'
+    // id 'eclipse'
     id 'idea'
     id 'org.springframework.boot' version '2.0.1.RELEASE'
     id 'com.github.ben-manes.versions' version '0.17.0'
@@ -31,14 +30,9 @@ repositories {
 sourceSets {
     main.java.srcDir "src/main/java"
     main.resources.srcDir "src/main/resources"
-    test.java.srcDir "src/test/java"
-    test.groovy.srcDir "src/test/groovy"
-    test.resources.srcDir "src/test/resources"
 }
 
 dependencies {
-    // although the gwt plugin should already download the gwt dependencies, we have to add
-    // them manually as some jetty dependencies are missing otherwise
     compileOnly("com.google.gwt:gwt-user:${GWT_VERSION}")
     compileOnly("com.google.gwt:gwt-dev:${GWT_VERSION}")
     compileOnly('org.fusesource.restygwt:restygwt:2.2.3')
@@ -46,17 +40,10 @@ dependencies {
     compile('javax.ws.rs:javax.ws.rs-api:2.1')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-jetty')
-    compile('org.springframework.boot:spring-boot-starter-web') {
+    compile('org.springframework.boot:spring-boot-starter-web') /*{
         exclude module: 'spring-boot-starter-tomcat'
-    }
-
+    }*/
     runtime('com.h2database:h2')
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('org.codehaus.groovy:groovy-all:2.4.15')
-    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
-    testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
-
     compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.0.1.RELEASE'
 }
 
@@ -82,9 +69,9 @@ bootJar {
     }
 }
 
-eclipse {
+/*eclipse {
     classpath {
         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
         containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
     }
-}
+}*/
