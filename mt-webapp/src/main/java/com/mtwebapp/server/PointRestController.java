@@ -61,7 +61,7 @@ public class PointRestController {
 
             return ResponseEntity.ok()
                     .cacheControl(CacheControl.noCache())
-                    .body(new ArrayList<>(resultPoints));
+                    .body(points);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

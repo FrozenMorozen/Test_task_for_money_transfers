@@ -16,8 +16,7 @@ public class Point {
     private String address;
     private City city;
 
-    public Point() {
-    }
+    public Point() {}
 
     public Point(final String name) {
         this.name = name;

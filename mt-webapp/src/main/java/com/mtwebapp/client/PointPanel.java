@@ -27,9 +27,6 @@ public class PointPanel extends Composite {
     @UiField
     Button getPointsButton;
 
-    @UiField
-    Grid grid = new Grid(2,2);
-
     public PointPanel(){
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -70,7 +67,6 @@ public class PointPanel extends Composite {
                 for ( Point point : response) {
                      PointLabel pointLabel= new PointLabel(point);
                     pointsList.add(pointLabel);
-                    grid = new Grid(2,2);
                 }
             }
         });

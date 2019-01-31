@@ -100,13 +100,13 @@ public class Point implements Comparable{
     @Override
     public int compareTo(Object o) {
         Point tmp = (Point)o;
-        int countryOrder = city.getCountry().getName().hashCode() - tmp.city.getCountry().getName().hashCode();
+        int countryOrder = city.getCountry().getName().hashCode() - tmp.getCity().getCountry().getName().hashCode();
 
         if (countryOrder == 0) {
-            int cityOrder = city.getName().hashCode()-tmp.city.getName().hashCode();
+            int cityOrder = city.getName().hashCode()-tmp.getCity().getName().hashCode();
 
             if (cityOrder == 0) {
-                return pointType.hashCode() - tmp.pointType.hashCode();
+                return pointType.hashCode() - tmp.getPointType().hashCode();
             } else {
                 return cityOrder;
             }

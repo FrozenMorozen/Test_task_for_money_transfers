@@ -97,7 +97,6 @@
             </div>
 
             <g:FlowPanel ui:field="pointsList"></g:FlowPanel>
-            <g:Grid ui:field="grid" addStyleNames="style.grid"></g:Grid>
         </div>
 
     </g:HTMLPanel>
