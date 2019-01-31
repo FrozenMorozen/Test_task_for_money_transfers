@@ -64,8 +64,8 @@
         }
 
         .input-group-button:hover {
-            background-color: #025aa5;
-            border-color: #01549b;
+        background-color: #025aa5;
+        border-color: #01549b;
         }
 
         .input-group-button:active {
@@ -81,11 +81,15 @@
             text-decoration: none;
             font-size: 12px;
         }
+
+        .grid {
+            color: red;
+        }
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.center}">
         <div class="{style.point-panel}">
-            <h1 class="{style.header}">Money transfers</h1>
+            <h1 class="{style.header}">Money transfer points</h1>
 
             <div class="{style.input-group}">
                 <g:TextBox ui:field="filterTextBox" addStyleNames="{style.input-group-text}"/>
@@ -93,6 +97,7 @@
             </div>
 
             <g:FlowPanel ui:field="pointsList"></g:FlowPanel>
+            <g:Grid ui:field="grid" addStyleNames="style.grid"></g:Grid>
         </div>
 
     </g:HTMLPanel>
