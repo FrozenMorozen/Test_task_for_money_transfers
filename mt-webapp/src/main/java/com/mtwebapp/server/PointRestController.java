@@ -40,7 +40,7 @@ public class PointRestController {
         List<Point> resultPoints = pointService.findByCountryAndCityFilter(filter);
         logger.info("Get points by filter='"+filter+"' : " + resultPoints);
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.noCache())   // Изменить
+                .cacheControl(CacheControl.noCache())
                 .body(resultPoints);
     }
 

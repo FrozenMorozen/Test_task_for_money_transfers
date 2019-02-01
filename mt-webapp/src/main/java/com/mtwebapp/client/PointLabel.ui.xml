@@ -5,13 +5,14 @@
             background-color: #EEEEEE;
             width: 100%;
             white-space: nowrap;
-            border-radius: .25rem
+            border-radius: .25rem;
         }
 
         .point-label:hover {
             color: #999999;
             cursor: pointer;
         }
+
     </ui:style>
     <g:Label ui:field="pointlabel" addStyleNames="{style.point-label}"/>
 </ui:UiBinder>
