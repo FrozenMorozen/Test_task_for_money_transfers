@@ -16,6 +16,7 @@ class PointLabel extends Composite {
     @UiField
     Label pointlabel;
 
+
     public PointLabel(Point point) {
         initWidget(ourUiBinder.createAndBindUi(this));
         pointlabel.setText(point.toString());
