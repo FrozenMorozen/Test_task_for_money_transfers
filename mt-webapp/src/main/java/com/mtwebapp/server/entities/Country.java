@@ -6,9 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-/**
- *  Страна
- */
 @Entity
 public class Country {
 
@@ -39,5 +36,23 @@ public class Country {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Country country = (Country) o;
+
+        if (id != country.id) return false;
+        return name != null ? name.equals(country.name) : country.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

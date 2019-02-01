@@ -1,7 +1,5 @@
 package com.mtwebapp.server;
 
-import com.mtwebapp.server.entities.City;
-import com.mtwebapp.server.entities.Country;
 import com.mtwebapp.server.entities.Point;
 import com.mtwebapp.server.services.impl.CityServiceImpl;
 import com.mtwebapp.server.services.impl.CountryServiceImpl;
@@ -14,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
 
 
 @RestController
@@ -39,9 +37,11 @@ public class PointRestController {
     public ResponseEntity<List<Point>> getPointByFilter(
             @RequestParam(value = "text", required = false) String filter) {
 
+        List<Point> resultPoints = pointService.findByCountryAndCityFilter(filter);
+        logger.info("Get points by filter='"+filter+"' : " + resultPoints);
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.noCache())
-                .body(pointService.findByCountryAndCityFilter(filter));
+                .cacheControl(CacheControl.noCache())   // Изменить
+                .body(resultPoints);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

@@ -7,11 +7,8 @@ import com.mtwebapp.server.entities.pointfields.PointType;
 import javax.persistence.*;
 
 
-/**
- *  Пункт денежных переводов
- */
 @Entity
-public class Point implements Comparable{
+public class Point{
 
     @Id
     @GeneratedValue
@@ -98,20 +95,28 @@ public class Point implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        Point tmp = (Point)o;
-        int countryOrder = city.getCountry().getName().hashCode() - tmp.getCity().getCountry().getName().hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        if (countryOrder == 0) {
-            int cityOrder = city.getName().hashCode()-tmp.getCity().getName().hashCode();
+        Point point = (Point) o;
 
-            if (cityOrder == 0) {
-                return pointType.hashCode() - tmp.getPointType().hashCode();
-            } else {
-                return cityOrder;
-            }
-        } else {
-            return countryOrder;
-        }
+        if (id != point.id) return false;
+        if (name != null ? !name.equals(point.name) : point.name != null) return false;
+        if (pointType != point.pointType) return false;
+        if (pointAbility != point.pointAbility) return false;
+        if (address != null ? !address.equals(point.address) : point.address != null) return false;
+        return city.equals(point.city);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (pointType != null ? pointType.hashCode() : 0);
+        result = 31 * result + (pointAbility != null ? pointAbility.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + city.hashCode();
+        return result;
     }
 }

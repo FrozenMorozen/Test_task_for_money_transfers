@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CityRepository extends CrudRepository<City, Long> {
 
-    public List<City> findByNameContainingIgnoreCase(String name);
-    public List<City> findByCountry(Country country);
+    List<City> findByNameContainingIgnoreCase(String name);
+    List<City> findByCountry(Country country);
 }

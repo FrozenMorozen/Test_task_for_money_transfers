@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 
-/**
- *  Город
- */
 @Entity
 public class City {
     @Id

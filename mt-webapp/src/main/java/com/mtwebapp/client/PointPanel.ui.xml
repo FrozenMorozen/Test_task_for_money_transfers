@@ -27,7 +27,7 @@
 
         .point-panel {
             background-color: #FFFFFF;
-            width: 550px;
+            width: 1050px;
             padding: 20px;
             box-shadow: 0 0 10px 1px #C9C9C9;
             border-radius: .25rem

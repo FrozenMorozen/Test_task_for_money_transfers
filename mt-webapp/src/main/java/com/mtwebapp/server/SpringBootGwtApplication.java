@@ -24,5 +24,4 @@ public class SpringBootGwtApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootGwtApplication.class, args);
     }
-
 }
