@@ -2,8 +2,4 @@
 /.gradle/
 src/main/resources/META-INF/
 src/test/
-build/gwt/
-build/resources/
-build/tmp/
 out/production/resources/
-!/build/libs/spring-boot-gwt-1.0.0.jar
