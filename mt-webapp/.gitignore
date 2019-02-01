@@ -1,9 +1,4 @@
 /.idea/
 /.gradle/
-/build/
-build/gwt/
-build/libs/
-build/resources/
-build/tmp/
 src/main/resources/META-INF/
 src/test/

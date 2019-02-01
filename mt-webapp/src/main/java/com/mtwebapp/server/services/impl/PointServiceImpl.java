@@ -16,27 +16,17 @@ public class PointServiceImpl implements PointService {
     private PointRepository pointRepository;
 
     @Override
-    public List<Point> findPointByFilter(String name) {
-        return pointRepository.findByNameContainingIgnoreCase(name);
-    }
-
-    @Override
     public void add(Point point) {
         pointRepository.save(point);
     }
 
     @Override
-    public List<Point> findByCity(City city) {
-        return pointRepository.findByCity(city);
-    }
-
-    @Override
-    public Iterable<Point> findAll() {
-        return  pointRepository.findAll();
-    }
-
-    @Override
     public void clear() {
         pointRepository.deleteAll();
+    }
+
+    @Override
+    public List<Point> findByCountryAndCityFilter(String filter) {
+        return pointRepository.findByCountryAndCityFilter(filter);
     }
 }

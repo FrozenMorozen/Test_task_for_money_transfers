@@ -82,9 +82,6 @@
             font-size: 12px;
         }
 
-        .grid {
-            color: red;
-        }
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.center}">

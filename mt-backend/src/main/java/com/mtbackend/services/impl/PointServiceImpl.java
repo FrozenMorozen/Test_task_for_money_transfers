@@ -41,5 +41,8 @@ public class PointServiceImpl implements PointService{
         pointRepository.deleteAll();
     }
 
-
+    @Override
+    public List<Point> findByCountryAndCityFilter(String filter) {
+        return pointRepository.findByCountryAndCityFilter(filter);
+    }
 }

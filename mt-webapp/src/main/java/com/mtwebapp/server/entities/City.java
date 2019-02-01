@@ -1,6 +1,7 @@
 package com.mtwebapp.server.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 /**
@@ -52,5 +53,20 @@ public class City {
                 ", name='" + name + '\'' +
                 ", country=" + country +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return id == city.id &&
+                Objects.equals(name, city.name) &&
+                Objects.equals(country, city.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, country);
     }
 }

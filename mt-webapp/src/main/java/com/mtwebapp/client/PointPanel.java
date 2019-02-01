@@ -8,12 +8,15 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
+
 import java.util.List;
 
 
 public class PointPanel extends Composite {
 
-    interface PointViewUiBinder extends UiBinder<HTMLPanel, PointPanel> {}
+    interface PointViewUiBinder extends UiBinder<HTMLPanel, PointPanel> {
+    }
+
     private static PointViewUiBinder uiBinder = GWT.create(PointViewUiBinder.class);
 
     private static final PointService pointService = GWT.create(PointService.class);
@@ -27,13 +30,13 @@ public class PointPanel extends Composite {
     @UiField
     Button getPointsButton;
 
-    public PointPanel(){
+    public PointPanel() {
         initWidget(uiBinder.createAndBindUi(this));
 
         getPointsButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                 String filterText = filterTextBox.getText();
+                String filterText = filterTextBox.getText();
                 if (!filterText.isEmpty()) {
                     getPoints(filterText);
                 }
@@ -58,14 +61,16 @@ public class PointPanel extends Composite {
         pointService.getPoints(text, new MethodCallback<List<Point>>() {
             @Override
             public void onFailure(Method method, Throwable exception) {
-
+                pointsList.clear();
+                Label errorlabel = new Label("Ошибка: не удалось связаться с сервером.");
+                pointsList.add(errorlabel);
             }
 
             @Override
             public void onSuccess(Method method, List<Point> response) {
                 pointsList.clear();
-                for ( Point point : response) {
-                     PointLabel pointLabel= new PointLabel(point);
+                for (Point point : response) {
+                    PointLabel pointLabel = new PointLabel(point);
                     pointsList.add(pointLabel);
                 }
             }

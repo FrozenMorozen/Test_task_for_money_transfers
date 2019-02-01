@@ -22,46 +22,26 @@ import java.util.*;
 public class PointRestController {
 
     private final CityServiceImpl cityService;
-
     private final CountryServiceImpl countryService;
-
     private final PointServiceImpl pointService;
-
     private final Logger logger = LoggerFactory.getLogger(PointRestController.class);
 
     @Autowired
-    public PointRestController(final CityServiceImpl cityService
-                            ,final CountryServiceImpl countryService
-                            ,final PointServiceImpl pointService) {
+    public PointRestController(final CityServiceImpl cityService,
+                               final CountryServiceImpl countryService,
+                               final PointServiceImpl pointService) {
         this.cityService = cityService;
         this.countryService = countryService;
         this.pointService = pointService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Point>> getPointByFilter(@RequestParam(value="text", required=false) String filter){
+    public ResponseEntity<List<Point>> getPointByFilter(
+            @RequestParam(value = "text", required = false) String filter) {
 
-            Set<Point> resultPoints = new HashSet<>();
-
-            // Отфильтровать пункты по городам
-            for (City city: cityService.findCityByFilter(filter)) {
-                resultPoints.addAll(pointService.findByCity(city));
-            }
-
-            // Добавить пункты с фильтром по стране
-            for (Country country: countryService.findCountryByFilter(filter)) {
-                for (City city: cityService.findCitiesByCountry(country)) {
-                    resultPoints.addAll(pointService.findByCity(city));
-                }
-            }
-
-            List<Point> points = new ArrayList<>(resultPoints);
-            Collections.sort(points);
-            logger.info("Get points: " + points);
-
-            return ResponseEntity.ok()
-                    .cacheControl(CacheControl.noCache())
-                    .body(points);
+        return ResponseEntity.ok()
+                .cacheControl(CacheControl.noCache())
+                .body(pointService.findByCountryAndCityFilter(filter));
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -70,5 +50,4 @@ public class PointRestController {
         logger.info("Point saved: " + point.toString());
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

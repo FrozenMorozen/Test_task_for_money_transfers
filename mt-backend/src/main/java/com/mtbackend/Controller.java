@@ -76,4 +76,9 @@ public class Controller {
             return resultPoints;
     }
 
+    @GetMapping("/pointsDEV")
+    public List<Point> getPointDev(@RequestParam(value="name", required=true) String filter){
+        return pointService.findByCountryAndCityFilter(filter);
+    }
+
 }

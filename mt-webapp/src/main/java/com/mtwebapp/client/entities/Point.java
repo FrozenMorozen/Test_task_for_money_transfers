@@ -74,7 +74,7 @@ public class Point {
     public String toString() {
         return city +
                 ", " + pointType + " '" + name + '\'' +
-                " (" + pointAbility + ")." +
+                " (" + pointAbility + ")." + "\n" +
                 " Address: '" + address + '\'';
     }
 }

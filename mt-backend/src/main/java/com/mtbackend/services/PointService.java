@@ -17,4 +17,6 @@ public interface PointService {
     Iterable<Point> findAll();
 
     void clear();
+
+    List<Point> findByCountryAndCityFilter(String filter);
 }
