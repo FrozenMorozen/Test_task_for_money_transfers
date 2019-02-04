@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 @RestController
@@ -38,9 +39,11 @@ public class PointRestController {
             @RequestParam(value = "text", required = false) String filter) {
 
         List<Point> resultPoints = pointService.findByCountryAndCityFilter(filter);
+        CacheControl cache = CacheControl.maxAge(30, TimeUnit.MINUTES);
+
         logger.info("Get points by filter='"+filter+"' : " + resultPoints);
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.noCache())
+                .cacheControl(cache)
                 .body(resultPoints);
     }
 
