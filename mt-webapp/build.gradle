@@ -42,6 +42,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('com.h2database:h2')
     compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.0.1.RELEASE'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 task wrapper(type: Wrapper) {

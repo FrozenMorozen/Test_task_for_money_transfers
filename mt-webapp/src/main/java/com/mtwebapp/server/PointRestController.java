@@ -4,8 +4,7 @@ import com.mtwebapp.server.entities.Point;
 import com.mtwebapp.server.services.impl.CityServiceImpl;
 import com.mtwebapp.server.services.impl.CountryServiceImpl;
 import com.mtwebapp.server.services.impl.PointServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
@@ -18,12 +17,12 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("points")
+@Slf4j
 public class PointRestController {
 
     private final CityServiceImpl cityService;
     private final CountryServiceImpl countryService;
     private final PointServiceImpl pointService;
-    private final Logger logger = LoggerFactory.getLogger(PointRestController.class);
 
     @Autowired
     public PointRestController(final CityServiceImpl cityService,
@@ -41,7 +40,7 @@ public class PointRestController {
         List<Point> resultPoints = pointService.findByCountryAndCityFilter(filter);
         CacheControl cache = CacheControl.maxAge(30, TimeUnit.MINUTES);
 
-        logger.info("Get points by filter='" + filter + "' : " + resultPoints);
+						log.info("Get points by filter='" + filter + "' : " + resultPoints);
         return ResponseEntity.ok()
                 .cacheControl(cache)
                 .body(resultPoints);
@@ -50,7 +49,7 @@ public class PointRestController {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<String> addTodoItem(@RequestBody final Point point) {
         pointService.add(point);
-        logger.info("Point saved: " + point.toString());
+        log.info("Point saved: " + point.toString());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
